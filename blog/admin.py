@@ -1,7 +1,13 @@
 from django.contrib import admin
-from blog.models import CategoryModel
-from blog.models import ArticleModel
+from blog.models import CategoryModel, ArticleModel
 
 admin.site.register(CategoryModel)
-admin.site.register(ArticleModel)
+
+class ArticleAdmin(admin.ModelAdmin):
+    search_fields = ("title", "content")
+    list_display = (
+        "title", "createdAt", "updatedAt"
+    )
+
+admin.site.register(ArticleModel, ArticleAdmin)
 

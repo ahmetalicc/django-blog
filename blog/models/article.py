@@ -2,11 +2,12 @@ from django.db import models
 from autoslug import AutoSlugField
 from blog.models import CategoryModel
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 class ArticleModel(models.Model):
     image = models.ImageField(upload_to="Article_images")
     title = models.CharField(max_length=50)
-    content = models.TextField()
+    content = RichTextField()
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     slug = AutoSlugField(populate_from = "title", unique=True)
